@@ -9,12 +9,12 @@
 						"referenceName": "squad_train_dataset",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "squadtraindata"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
-			"script": "source(output(\n\t\tversion as string,\n\t\tdata as (title as string, paragraphs as (qas as (question as string, id as string, answers as (text as string, answer_start as string)[], is_impossible as boolean)[], context as string)[])[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1"
+			"script": "source(output(\n\t\tversion as string,\n\t\tdata as (title as string, paragraphs as (qas as (question as string, id as string, answers as (text as string, answer_start as string)[], is_impossible as boolean)[], context as string)[])[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> squadtraindata"
 		}
 	}
 }
