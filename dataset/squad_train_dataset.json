@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "dev-v2.0.json",
+				"fileName": "train-v2.0.json",
 				"container": "squad2"
 			}
 		},
