@@ -1,0 +1,79 @@
+{
+	"name": "squad_train_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "dev-v2.0.json",
+				"container": "squad2"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"version": {
+					"type": "string"
+				},
+				"data": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"title": {
+								"type": "string"
+							},
+							"paragraphs": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"qas": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"question": {
+														"type": "string"
+													},
+													"id": {
+														"type": "string"
+													},
+													"answers": {
+														"type": "array",
+														"items": {
+															"type": "object",
+															"properties": {
+																"text": {
+																	"type": "string"
+																},
+																"answer_start": {
+																	"type": "integer"
+																}
+															}
+														}
+													},
+													"is_impossible": {
+														"type": "boolean"
+													}
+												}
+											}
+										},
+										"context": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
