@@ -12,9 +12,21 @@
 					"name": "squadtraindata"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
-			"script": "source(output(\n\t\tversion as string,\n\t\tdata as (title as string, paragraphs as (qas as (question as string, id as string, answers as (text as string, answer_start as string)[], is_impossible as boolean)[], context as string)[])[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> squadtraindata"
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "source(output(\n\t\tversion as string,\n\t\tdata as (title as string, paragraphs as (qas as (question as string, id as string, answers as (text as string, answer_start as string)[], is_impossible as boolean)[], context as string)[])[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> squadtraindata\nsquadtraindata select(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 		}
 	}
 }
